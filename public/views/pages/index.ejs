@@ -19,7 +19,7 @@
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i|Satisfy"
       rel="stylesheet"
     />
 
@@ -48,72 +48,28 @@
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
       <div class="container d-flex flex-column align-items-center">
-        <h1>Maundy</h1>
-        <h2>
-          We're working hard to improve our website and we'll ready to
-          launch after
+        <div class="logo">San Juan App</div>
+        <h2 class="pt-3" style="text-align: center;">
+          Estamos trabajando para poder ofrecerles un servicio nuevo
         </h2>
-        <div
-          class="countdown d-flex justify-content-center"
-          data-count="2020/12/3"
-        >
-          <div>
-            <h3>%D</h3>
-            <h4>Days</h4>
-          </div>
-          <div>
-            <h3>%H</h3>
-            <h4>Hours</h4>
-          </div>
-          <div>
-            <h3>%M</h3>
-            <h4>Minutes</h4>
-          </div>
-          <div>
-            <h3>%S</h3>
-            <h4>Seconds</h4>
-          </div>
+        <div>
+          <img
+            src="img/toro_mid.png"
+            height="200px"
+            width="200px"
+            alt=""
+          />
         </div>
 
-        <div class="subscribe">
-          <h4>Subscribe now to get the latest updates!</h4>
-          <form
-            action="forms/notify.php"
-            method="post"
-            role="form"
-            class="php-email-form"
-          >
-            <div class="subscribe-form">
-              <input type="email" name="email" /><input
-                type="submit"
-                value="Subscribe"
-              />
-            </div>
-            <div class="mt-2">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">
-                Your notification request was sent. Thank you!
-              </div>
-            </div>
-          </form>
-        </div>
+        <div class="subscribe"></div>
 
         <div class="social-links text-center">
-          <a href="#" class="twitter"
+          <h2>Encuentranos en</h2>
+          <a href="https://twitter.com/SanJuanApp1" class="twitter"
             ><i class="icofont-twitter"></i
           ></a>
           <a href="#" class="facebook"
             ><i class="icofont-facebook"></i
-          ></a>
-          <a href="#" class="instagram"
-            ><i class="icofont-instagram"></i
-          ></a>
-          <a href="#" class="google-plus"
-            ><i class="icofont-skype"></i
-          ></a>
-          <a href="#" class="linkedin"
-            ><i class="icofont-linkedin"></i
           ></a>
         </div>
       </div>
@@ -125,43 +81,50 @@
       <section id="about" class="about">
         <div class="container">
           <div class="section-title">
-            <h2>About Us</h2>
+            <h2>Acerca de Nosotros</h2>
             <p>
-              Illo velit quae dolorem voluptate pireda notila set.
-              Corrupti voluptatum tempora iste ratione deleniti
-              corrupti nostrum ut
+              San Juan App nació en el 2019 con el objetivo de poder
+              ayudar a todos los fanáticos del pastel mandi'ó a
+              encontar la fiesta de San Juan mas cercana.
+              Lastimosamente, el 2020 nos dejó sin una de nuestras
+              fiestas favoritas pero eso no detuvo a nuestros
+              compatriotas de preparar deliciosas comidas típicas y
+              venderlas a través de un servicio de delivery. Hoy, San
+              Juan App ayudará a más personas a comprar y vender esas
+              delicias de otoño que siempre tienen un lugar en nuestro
+              corazón (o estómago)
             </p>
           </div>
 
           <div class="row mt-2">
             <div class="col-lg-4 col-md-6 icon-box">
-              <div class="icon"><i class="icofont-computer"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+              <div class="icon">
+                <i class="icofont-search-restaurant"></i>
+              </div>
+              <h4 class="title"><a href="">Buscá</a></h4>
               <p class="description">
-                Voluptatum deleniti atque corrupti quos dolores et
-                quas molestias excepturi sint occaecati cupiditate non
-                provident
+                Vas a poder encontrar lo que quieras comer según
+                cercanía, precio o disponibilidad
               </p>
             </div>
             <div class="col-lg-4 col-md-6 icon-box">
               <div class="icon">
-                <i class="icofont-chart-bar-graph"></i>
+                <i class="icofont-ui-touch-phone"></i>
               </div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
+              <h4 class="title"><a href="">Pedí</a></h4>
               <p class="description">
-                Minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat tarad
-                limino ata
+                Todas las opciones tendrán un número de teléfono para
+                ponerte en contacto con el vendedor
               </p>
             </div>
             <div class="col-lg-4 col-md-6 icon-box">
-              <div class="icon"><i class="icofont-earth"></i></div>
+              <div class="icon"><i class="icofont-star"></i></div>
               <h4 class="title">
-                <a href="">Sed ut perspiciatis</a>
+                <a href="">Disfrutá</a>
               </h4>
               <p class="description">
-                Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur
+                Existe algo mas genial que disfrutar de un mbejú con
+                cocido con este clima?
               </p>
             </div>
           </div>
@@ -173,11 +136,28 @@
       <section id="contact" class="contact">
         <div class="container">
           <div class="section-title">
-            <h2>Contact Us</h2>
+            <h2>Contacto</h2>
+            <p>
+              Querés ofrecer tu servicio de venta de comidas típicas?
+            </p>
+            <p>
+              Mandanos la información a través de nuestras redes
+              sociales y nosotros nos encargaremos del resto. No te
+              olvides de incluir los siguientes datos:
+            </p>
+            <div class="ex2">
+              <ul>
+                <li>Nombre de la empresa/emprendimiento</li>
+                <li>Menú con precios</li>
+                <li>Horario</li>
+                <li>Dias</li>
+                <li>Numero de contacto</li>
+              </ul>
+            </div>
           </div>
 
           <div class="row">
-            <div class="col-lg-5 d-flex align-items-stretch">
+            <!-- <div class="col-lg-5 d-flex align-items-stretch">
               <div class="info">
                 <div class="address">
                   <i class="icofont-google-map"></i>
@@ -204,10 +184,11 @@
                   allowfullscreen
                 ></iframe>
               </div>
-            </div>
+            </div> -->
 
-            <div
-              class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"
+            <!-- FORM -->
+            <!-- <div
+              class="col-lg-12 mt-12 mt-lg-12 d-flex align-items-stretch"
             >
               <form
                 action="forms/contact.php"
@@ -275,7 +256,7 @@
                   <button type="submit">Send Message</button>
                 </div>
               </form>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>

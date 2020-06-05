@@ -11,9 +11,19 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #fff;
-  background: url('../img/bg.jpg') top center no-repeat;
+  background: url('../img/new-bg.jpg') top center no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.logo {
+  font-family: 'Satisfy';
+  font-size: 48px;
+}
+
+div.ex2 {
+  max-width: 400px;
+  margin: auto;
 }
 
 body::before {
@@ -89,7 +99,7 @@ h6 {
 #header {
   position: relative;
   width: 100%;
-  padding: 100px 0;
+  padding: 45px 0;
   /* countdown */
 }
 
@@ -254,7 +264,7 @@ h6 {
 }
 
 #header .social-links a {
-  font-size: 16px;
+  font-size: 40px;
   display: inline-block;
   color: #fff;
   line-height: 1;
@@ -262,15 +272,15 @@ h6 {
   margin: 0 3px;
   border-radius: 50%;
   text-align: center;
-  width: 48px;
-  height: 48px;
+  width: 75px;
+  height: 75px;
   transition: 0.3s;
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 #header .social-links a:hover {
-  background: #24b7a4;
-  border-color: #24b7a4;
+  background: #eaca3e;
+  border-color: #eaca3e;
 }
 
 /*--------------------------------------------------------------
