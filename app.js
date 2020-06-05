@@ -38,12 +38,12 @@ app.get('/', (req, res) => {
   }
   (async function () {
     try {
-      let response = await axios.get('/', {
-        proxy: { host: url, port: 3000 },
-      });
+      // let response = await axios.get('/', {
+      //   proxy: { host: url, port: 3000 },
+      // });
       const options = {
         title: 'San Juan App',
-        response: response.data,
+        // response: response.data,
       };
       res.render('index', options);
     } catch (e) {
