@@ -11,6 +11,7 @@ const app = express();
 
 // Routers import
 const testRouter = require('./src/routes/testRouter');
+const indexRouter = require('./src/routes/indexRouter');
 
 const PORT = process.env.PORT || 3001;
 
@@ -24,9 +25,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('views', './public/views/pages');
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => res.render('index'));
+// app.get('/', (req, res) => res.render('index'));
+app.get('/', indexRouter);
 
-// app.use('/test', testRouter);
+app.use('/test', testRouter);
 
 // app.get('/maps', (req, res) => {
 //   res.render('maps', {

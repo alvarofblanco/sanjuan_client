@@ -5,9 +5,10 @@ const getTest = async (req, res) => {
   // res.render('index');
   try {
     debug('LLEGO CONTROLLER');
-    let response = await axios.get('/', {
-      proxy: { host: 'localhost', port: 3000 },
+    let response = await axios.get('/sanjuans', {
+      proxy: { host: 'sanjuanapp_api', port: 1337 },
     });
+    debug(`Response: ${response.data}`);
     const options = {
       title: 'San Juan App',
       response: response.data,
