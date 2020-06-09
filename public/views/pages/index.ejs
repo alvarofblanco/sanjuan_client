@@ -36,6 +36,13 @@
     <!-- Template Main CSS File -->
     <link href="css/style.css" rel="stylesheet" />
 
+    <!-- RECAPTCHA SCRIPT -->
+    <script
+      scr="https://www.google.com/recaptcha/api.js"
+      async
+      defer
+    ></script>
+
     <!-- =======================================================
   * Template Name: Maundy - v2.0.0
   * Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
@@ -147,16 +154,35 @@
               sociales y nosotros nos encargaremos del resto. No te
               olvides de incluir los siguientes datos:
             </p>
-            <div class="ex2">
-              <ul class="list-unstyled">
-                <li>Nombre de la empresa/emprendimiento</li>
-                <li>Dirección/Ubicación</li>
-                <li>Menú con precios</li>
-                <li>Horario</li>
-                <li>Dias</li>
-                <li>Numero de contacto</li>
-              </ul>
-            </div>
+          </div>
+
+          <div
+            class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"
+          >
+            <form
+              action="/"
+              method="POST"
+              role="form"
+              class="php-email-form"
+            >
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="name">Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="name"
+                  />
+                  <div class="validate"></div>
+                </div>
+                <div
+                  class="g-recaptcha"
+                  data-sitekey="6Lfo8_kUAAAAAFyf6Elqb5T7ZgGpRKkOHODcqA0Y"
+                ></div>
+              </div>
+              <div class="mb-3"></div>
+            </form>
           </div>
         </div>
       </section>
@@ -165,22 +191,7 @@
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer">
-      <div class="container">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Maundy</span></strong
-          >. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/ -->
-          Designed by
-          <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-      </div>
-    </footer>
+    <%- include('../partials/footer')%>
     <!-- End #footer -->
   </body>
 </html>

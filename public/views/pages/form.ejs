@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0"
+      name="viewport"
+    />
+    <title>San Juan App - Proximamente</title>
+    <meta content="" name="descriptison" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="img/favicon.png" rel="icon" />
+    <link
+      href="assets/img/apple-touch-icon.png"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Satisfy"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link href="icofont/icofont.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <!-- RECAPTCHA SCRIPT -->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+    <!-- =======================================================
+  * Template Name: Maundy - v2.0.0
+  * Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body>
+    <main id="main">
+      <!-- ======= About Us Section ======= -->
+
+      <!-- End About Us Section -->
+
+      <!-- ======= Contact Us Section ======= -->
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="section-title">
+            <h2>Contacto</h2>
+            <p>
+              Querés ofrecer tu servicio de venta de comidas típicas?
+            </p>
+            <p>
+              Mandanos la información a través de nuestras redes
+              sociales y nosotros nos encargaremos del resto. No te
+              olvides de incluir los siguientes datos:
+            </p>
+          </div>
+
+          <div
+            class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"
+          >
+            <!-- FORM HEADER -->
+            <div class="form-header">
+              <% if(Object.keys(errors).length == 0) { %>
+              <!-- <h2>Datos:</h2> -->
+              <% } else { %>
+              <h2 class="errors-heading">
+                Oops, por favor corrija lo siguiente
+              </h2>
+              <ul class="errors-lits">
+                <% Object.values(errors).forEach(error => { %>
+                <li><%= error.msg %></li>
+                <% }) %>
+              </ul>
+              <% } %>
+            </div>
+            <form
+              method="POST"
+              action="/captcha"
+              novalidate
+              class="php-email-form"
+            >
+              <div class="form-row">
+                <div
+                  class="form-group col-md-6 <% errors.message ? 'form-field-invalid' : '' %>"
+                >
+                  <label for="name">Nombre del San Juan</label>
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    id="name"
+                    data-rule="minlen:4"
+                    data-msg="Please enter at least 4 chars"
+                    value="<%= data.name%>"
+                    placeholder="San Juan de Barrio Obrero"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Contacto</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="contact"
+                    id="contact"
+                    data-rule="minlen:10"
+                    data-msg="Please enter a valid description"
+                    value="<%= data.contact%>"
+                    placeholder="0981123123"
+                  />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Dirección</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="address"
+                  id="address"
+                  data-rule="minlen:4"
+                  data-msg="Please enter at least 8 chars of subject"
+                  value="<%= data.address%>"
+                  placeholder="Avda. Siempre Verde 123"
+                />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <label for="name">Descripción</label>
+                <textarea
+                  class="form-control"
+                  name="description"
+                  id="description"
+                  rows="10"
+                  data-rule="required"
+                  data-msg="Please write something for us"
+                  value="<%= data.description%>"
+                  placeholder="Menu Completo: Gs. 50.000 contiene 3 mbeju, 2 chipas y un cocido. Delivery incluido."
+                ></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <label for="name">Horario de Atención</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="opening_hours"
+                  id="opening_hours"
+                  data-rule="minlen:4"
+                  data-msg="Please enter at least 8 chars of subject"
+                  value="<%= data.address%>"
+                  placeholder="Lun a Vie de 09 a 18 y Sab de 12 a 18"
+                />
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">
+                  Your message has been sent. Thank you!
+                </div>
+              </div>
+              <!-- <div
+                class="g-recaptcha"
+                data-sitekey="6Le7WQEVAAAAANNcTzfWK7OhHtnL8PwaMKWdH7zU"
+              ></div> -->
+
+              <div class="text-center">
+                <button type="submit">Send Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- End Contact Us Section -->
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <%- include('../partials/footer')%>
+    <!-- End #footer -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#sanjuan_form').submit(function () {
+          $(this).ajaxSubmit({
+            error: function (xhr) {
+              status('Error: ' + xhr.status);
+            },
+            success: function (response) {
+              console.log(response);
+            },
+          });
+          //Very important line, it disable the page refresh.
+          return false;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -42,6 +42,10 @@ body::before {
   }
 }
 
+.form-field-invalid {
+  border-color: #cc0000;
+}
+
 a {
   color: #24b7a4;
 }
