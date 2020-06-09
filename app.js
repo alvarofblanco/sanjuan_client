@@ -11,7 +11,7 @@ const {
 } = require('express-validator');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const flash = require('express-flash');
+const flash = require('connect-flash');
 
 require('dotenv').config();
 
@@ -22,21 +22,15 @@ const testRouter = require('./src/routes/testRouter');
 const indexRouter = require('./src/routes/indexRouter');
 
 const PORT = process.env.PORT || 3001;
+const sessionStore = new session.MemoryStore();
 
 // Middlewares
 app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(
-  session({
-    secret: 'super-secret-key',
-    key: 'super-secret-cookie',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 60000 },
-  }),
-);
+
+app.use(cookieParser('secret'));
+app.use(session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
 
 // Serve static files
@@ -67,27 +61,12 @@ app.post(
     check('description')
       .isLength({ min: 10 })
       .withMessage('Ingrese una descripción válida'),
-    check('opening_hours')
+    check('operating_hours_string')
       .isLength({ min: 5, max: 100 })
       .withMessage('Ingrese un horario válido'),
     check('address').isLength(),
   ],
   async (req, res) => {
-    // const secretKey = '6Le7WQEVAAAAANNcTzfWK7OhHtnL8PwaMKWdH7zU';
-
-    // if (
-    //   req.body['g-recaptcha-response'] === undefined ||
-    //   req.body['g-recaptcha-response'] === '' ||
-    //   req.body['g-recaptcha-response'] === null
-    // ) {
-    //   return res.json({
-    //     responseCode: 1,
-    //     responseDesc: 'Please select captcha',
-    //   });
-    // }
-
-    // const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&amp;response=${req.body['g-recaptcha-response']}&amp;remoteip=${req.connection.remoteAddress}`;
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.render('pages/form', {
@@ -97,15 +76,22 @@ app.post(
     }
 
     const data = matchedData(req);
-    console.log('DATA: ', data);
     //Add the data to the db
+    try {
+      const response = await axios.post('/sanjuans', data, {
+        proxy: { host: 'sanjuanapp_api', port: 1337 },
+      });
 
-    req.flash(
-      'success',
-      'Gracias! En breve en el San Juan estará disponible para todos',
-    );
+      req.flash(
+        'success',
+        'Muchisimas gracias por la info! En breve los datos del San Juan se encontraran disponibles en la app',
+      );
 
-    res.redirect('/');
+      // res.json(req.flash('success'));
+      res.render('pages/index', { flash: req.flash('success') });
+    } catch (error) {
+      res.json({ message: 'hule m3n', error: error.toString() });
+    }
   },
 );
 app.use('/test', testRouter);
