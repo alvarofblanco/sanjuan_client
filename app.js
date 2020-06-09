@@ -4,6 +4,11 @@ const debug = require('debug')('app');
 const morgan = require('morgan');
 const axios = require('axios');
 const bodyParser = require('body-parser');
+const {
+  check,
+  validationResult,
+  matchedData,
+} = require('express-validator');
 
 require('dotenv').config();
 
@@ -36,43 +41,55 @@ app.get('/captcha', (req, res) => {
     errors: {},
   });
 });
-app.post('/captcha', async (req, res) => {
-  // const secretKey = '6Le7WQEVAAAAANNcTzfWK7OhHtnL8PwaMKWdH7zU';
+app.post(
+  '/captcha',
+  [
+    check('name')
+      .isLength({ min: 5, max: 100 })
+      .withMessage('Ingrese un nombre válido'),
+    check('contact')
+      .isLength({ min: 10, max: 10 })
+      .withMessage('Ingrese un contacto válido'),
+    check('description')
+      .isLength({ min: 10 })
+      .withMessage('Ingrese una descripción válida'),
+    check('opening_hours')
+      .isLength({ min: 5, max: 100 })
+      .withMessage('Ingrese un horario válido'),
+    check('address').isLength(),
+  ],
+  async (req, res) => {
+    // const secretKey = '6Le7WQEVAAAAANNcTzfWK7OhHtnL8PwaMKWdH7zU';
 
-  // if (
-  //   req.body['g-recaptcha-response'] === undefined ||
-  //   req.body['g-recaptcha-response'] === '' ||
-  //   req.body['g-recaptcha-response'] === null
-  // ) {
-  //   return res.json({
-  //     responseCode: 1,
-  //     responseDesc: 'Please select captcha',
-  //   });
-  // }
+    // if (
+    //   req.body['g-recaptcha-response'] === undefined ||
+    //   req.body['g-recaptcha-response'] === '' ||
+    //   req.body['g-recaptcha-response'] === null
+    // ) {
+    //   return res.json({
+    //     responseCode: 1,
+    //     responseDesc: 'Please select captcha',
+    //   });
+    // }
 
-  // const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&amp;response=${req.body['g-recaptcha-response']}&amp;remoteip=${req.connection.remoteAddress}`;
+    // const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&amp;response=${req.body['g-recaptcha-response']}&amp;remoteip=${req.connection.remoteAddress}`;
 
-  res.render('pages/form', {
-    data: req.body,
-    errors: {
-      name: {
-        msg: 'Ingrese un nombre valido',
-      },
-      description: {
-        msg: 'Ingrese una descripcion valida',
-      },
-      opening_hours: {
-        msg: 'Ingrese una hora valida',
-      },
-      contact: {
-        msg: 'Ingrese un contacto valido',
-      },
-      address: {
-        msg: 'Ingrese una direccion válida',
-      },
-    },
-  });
-});
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.log('ERROR: ', errors);
+      return res.render('pages/form', {
+        data: req.body,
+        errors: errors.mapped,
+      });
+    }
+
+    const data = matchedData(req);
+    console.log('DATA: ', data);
+    //Add the data to the db
+
+    res.redirect('/');
+  },
+);
 app.use('/test', testRouter);
 
 // app.get('/maps', (req, res) => {
