@@ -52,6 +52,12 @@
   </head>
 
   <body>
+    <% if(messages.success) {%>
+    <div class="flash flash-success text-center">
+      <%= messages.success %>
+    </div>
+    <% } %>
+
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
       <div class="container d-flex flex-column align-items-center">
@@ -145,44 +151,10 @@
       <section id="contact" class="contact">
         <div class="container">
           <div class="section-title">
-            <h2>Contacto</h2>
-            <p>
-              Querés ofrecer tu servicio de venta de comidas típicas?
-            </p>
-            <p>
-              Mandanos la información a través de nuestras redes
-              sociales y nosotros nos encargaremos del resto. No te
-              olvides de incluir los siguientes datos:
-            </p>
-          </div>
-
-          <div
-            class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"
-          >
-            <form
-              action="/"
-              method="POST"
-              role="form"
-              class="php-email-form"
-            >
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="name">Nombre</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="name"
-                    id="name"
-                  />
-                  <div class="validate"></div>
-                </div>
-                <div
-                  class="g-recaptcha"
-                  data-sitekey="6Lfo8_kUAAAAAFyf6Elqb5T7ZgGpRKkOHODcqA0Y"
-                ></div>
-              </div>
-              <div class="mb-3"></div>
-            </form>
+            <h2>
+              QUIERES OFRECER TU SERVICIO DE VENTA DE COMIDAS TIPICAS?
+              HAZ CLICK <a href="/captcha">AQUI</a>>
+            </h2>
           </div>
         </div>
       </section>

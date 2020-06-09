@@ -62,9 +62,8 @@
               Querés ofrecer tu servicio de venta de comidas típicas?
             </p>
             <p>
-              Mandanos la información a través de nuestras redes
-              sociales y nosotros nos encargaremos del resto. No te
-              olvides de incluir los siguientes datos:
+              Con tan solo llenar este formulario ya estas agregando
+              tu menú a la aplicación
             </p>
           </div>
 
@@ -72,26 +71,26 @@
             class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"
           >
             <!-- FORM HEADER -->
-            <div class="form-header">
-              <% if(Object.keys(errors).length == 0) { %>
-              <!-- <h2>Datos:</h2> -->
-              <% } else { %>
-              <h2 class="errors-heading">
-                Oops, por favor corrija lo siguiente
-              </h2>
-              <ul class="errors-lits">
-                <% Object.values(errors).forEach(error => { %>
-                <li><%= error.msg %></li>
-                <% }) %>
-              </ul>
-              <% } %>
-            </div>
             <form
               method="POST"
               action="/captcha"
               novalidate
               class="php-email-form"
             >
+              <div>
+                <% if(Object.keys(errors).length == 0) { %>
+                <h2>Datos:</h2>
+                <% } else { %>
+                <h2 class="form-error">
+                  Oops, por favor corrija lo siguiente
+                </h2>
+                <ul>
+                  <% Object.values(errors).forEach(error => { %>
+                  <li><%= error.msg %></li>
+                  <% }) %>
+                </ul>
+                <% } %>
+              </div>
               <div class="form-row">
                 <div
                   class="form-group col-md-6 <% errors.message ? 'form-field-invalid' : '' %>"
@@ -172,7 +171,7 @@
               ></div> -->
 
               <div class="text-center">
-                <button type="submit">Send Message</button>
+                <button type="submit">Enviar San Juan</button>
               </div>
             </form>
           </div>

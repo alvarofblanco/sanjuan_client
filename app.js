@@ -9,6 +9,9 @@ const {
   validationResult,
   matchedData,
 } = require('express-validator');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('express-flash');
 
 require('dotenv').config();
 
@@ -24,6 +27,17 @@ const PORT = process.env.PORT || 3001;
 app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(
+  session({
+    secret: 'super-secret-key',
+    key: 'super-secret-cookie',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 },
+  }),
+);
+app.use(flash());
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '/public')));
@@ -76,16 +90,20 @@ app.post(
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log('ERROR: ', errors);
       return res.render('pages/form', {
         data: req.body,
-        errors: errors.mapped,
+        errors: errors.mapped(),
       });
     }
 
     const data = matchedData(req);
     console.log('DATA: ', data);
     //Add the data to the db
+
+    req.flash(
+      'success',
+      'Gracias! En breve en el San Juan estará disponible para todos',
+    );
 
     res.redirect('/');
   },
