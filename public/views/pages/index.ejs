@@ -45,6 +45,9 @@
   </head>
 
   <body>
+    <% if (messages.success) {%>
+    <div class="flash flash-success"><%= messages.success %></div>
+    <% }%>
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
       <div class="container d-flex flex-column align-items-center">
@@ -139,8 +142,8 @@
         <div class="container">
           <div class="section-title">
             <h2>
-              QUIERES OFRECER TU SERVICIO DE VENTA DE COMIDAS TIPICAS?
-              HAZ CLICK <a href="/sanjuan/new">AQUI</a>>
+              QUIERES OFRECER TU SERVICIO DE VENTA DE COMIDAS TÍPICAS?
+              HAZ CLICK <a href="/sanjuan/new">AQUÍ</a>
             </h2>
           </div>
         </div>

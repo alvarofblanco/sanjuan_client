@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const debug = require('debug')('app');
 const morgan = require('morgan');
-const axios = require('axios');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const flash = require('express-flash');
 
 const helmet = require('helmet');
 
@@ -14,7 +14,6 @@ require('dotenv').config();
 const app = express();
 
 // Routers import
-const testRouter = require('./src/routes/testRouter');
 const indexRouter = require('./src/routes/indexRouter');
 const sanjuanRouter = require('./src/routes/sanjuanRouter');
 
@@ -35,6 +34,7 @@ app.use(
     cookie: { maxAge: 60000 },
   }),
 );
+app.use(flash());
 // Serve static files
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -51,6 +51,6 @@ app.use((req, res) => {
   res.status(404).send('Unable to find the requested route');
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '192.168.100.15', () => {
   debug(`Listening on port: ${PORT}`);
 });

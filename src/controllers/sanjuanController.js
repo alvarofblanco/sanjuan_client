@@ -35,7 +35,6 @@ const newSanjuanForm = async (req, res) => {
 
 // make the api call to save the data
 const newSanjuanService = async (req, res) => {
-  debug('ENTERING NEW SANJUAN SERVICE');
   // Get connection string
   let host = getConnectionString();
   // Checks for errors
@@ -53,9 +52,12 @@ const newSanjuanService = async (req, res) => {
     const response = await axios.post('/sanjuans', data, {
       proxy: { host: host, port: 1337 },
     });
-    // TODO add flash message
-    console.log(response);
+
     if (response.status == 200) {
+      req.flash(
+        'success',
+        'Gracias por los datos! En breve el evento estará disponible para todos',
+      );
       res.redirect(301, '/');
     }
   } catch (error) {
