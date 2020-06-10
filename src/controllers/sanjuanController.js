@@ -7,6 +7,8 @@ const axios = require('axios');
 
 const getSanjuanList = async (req, res) => {
   const host = getConnectionString();
+  console.log('HOST: ', host);
+
   try {
     const response = await axios.get('/sanjuans?active=true', {
       proxy: {
@@ -18,9 +20,7 @@ const getSanjuanList = async (req, res) => {
     console.log(response.data);
 
     res.render('pages/maps', {
-      GOOGLE_MAPS_API_KEY:
-        process.env.GOOGLE_MAPS_API_KEY ||
-        'AIzaSyDdTh37pLricihtuZKxqUCW0_yErzVle0s',
+      GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     });
   } catch (error) {}
 };
@@ -54,32 +54,17 @@ const newSanjuanService = async (req, res) => {
     });
 
     if (response.status == 200) {
-      req.flash(
-        'success',
-        'Gracias por los datos! En breve el evento estará disponible para todos',
-      );
-      res.redirect(301, '/');
+      res.redirect(301, '/success');
     }
   } catch (error) {
     console.log(error.toString());
-    res.redirect(301, '/');
+    res.redirect(301, '/fail');
   }
 };
 
 const getConnectionString = () => {
   require('dotenv').config();
-  let host = '';
-  switch (process.env.NODE_ENV) {
-    case 'development':
-      host = 'localhost';
-      break;
-    case 'testing':
-      host = 'sanjuanapp_api';
-      break;
-    default:
-      host = 'localhost';
-  }
-  return host;
+  return process.env.CONNECTION_STRING;
 };
 
 const sanjuanController = {};

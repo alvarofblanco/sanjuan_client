@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const flash = require('express-flash');
 
 const helmet = require('helmet');
 
@@ -34,7 +33,6 @@ app.use(
     cookie: { maxAge: 60000 },
   }),
 );
-app.use(flash());
 // Serve static files
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -45,6 +43,13 @@ app.set('view engine', 'ejs');
 // app.get('/', (req, res) => res.render('index'));
 app.use('/', indexRouter);
 app.use('/sanjuan', sanjuanRouter);
+
+app.get('/success', (req, res) => {
+  res.render('pages/success');
+});
+app.get('/fail', (req, res) => {
+  res.render('pages/failure');
+});
 
 // app.use('/test', testRouter);
 app.use((req, res) => {
