@@ -1,0 +1,72 @@
+const {
+  validationResult,
+  matchedData,
+} = require('express-validator');
+const debug = require('debug')('sanjuanController');
+const axios = require('axios');
+
+const getSanjuanList = async (req, res) => {
+  // res.json({ message: 'Route not implemented yet' });
+  res.render('pages/maps', {
+    GOOGLE_MAPS_API_KEY:
+      process.env.GOOGLE_MAPS_API_KEY ||
+      'AIzaSyDdTh37pLricihtuZKxqUCW0_yErzVle0s',
+  });
+};
+
+const newSanjuanForm = async (req, res) => {
+  res.render('pages/form', {
+    data: {},
+    errors: {},
+    csrfToken: req.csrfToken(),
+  });
+};
+
+// make the api call to save the data
+const newSanjuanService = async (req, res) => {
+  debug('ENTERING NEW SANJUAN SERVICE');
+  // Get connection string
+  require('dotenv').config();
+  let host = '';
+  switch (process.env.NODE_ENV) {
+    case 'development':
+      host = 'localhost';
+      break;
+    case 'testing':
+      host = 'sanjuanapp_api';
+      break;
+    default:
+      host = 'localhost';
+  }
+  // Checks for errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.render('pages/form', {
+      data: req.body,
+      errors: errors.mapped(),
+      csrfToken: req.csrfToken(),
+    });
+  }
+  const data = matchedData(req);
+  // Use Axios to make the API call
+  try {
+    const response = await axios.post('/sanjuans', data, {
+      proxy: { host: host, port: 1337 },
+    });
+    // TODO add flash message
+    console.log(response);
+    if (response.status == 200) {
+      res.redirect(301, '/');
+    }
+  } catch (error) {
+    console.log(error.toString());
+    res.redirect(301, '/');
+  }
+};
+
+const sanjuanController = {};
+sanjuanController.getSanjuanList = getSanjuanList;
+sanjuanController.newSanjuanForm = newSanjuanForm;
+sanjuanController.newSanjuanService = newSanjuanService;
+
+module.exports = sanjuanController;

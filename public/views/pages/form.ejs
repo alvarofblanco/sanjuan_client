@@ -11,7 +11,7 @@
     <meta content="" name="keywords" />
 
     <!-- Favicons -->
-    <link href="img/favicon.png" rel="icon" />
+    <link href="../img/favicon.png" rel="icon" />
     <link
       href="assets/img/apple-touch-icon.png"
       rel="apple-touch-icon"
@@ -31,13 +31,10 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <link href="icofont/icofont.min.css" rel="stylesheet" />
+    <link href="../icofont/icofont.min.css" rel="stylesheet" />
 
     <!-- Template Main CSS File -->
-    <link href="css/style.css" rel="stylesheet" />
-
-    <!-- RECAPTCHA SCRIPT -->
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <link href="../css/style.css" rel="stylesheet" />
 
     <!-- =======================================================
   * Template Name: Maundy - v2.0.0
@@ -73,10 +70,15 @@
             <!-- FORM HEADER -->
             <form
               method="POST"
-              action="/captcha"
+              action="/sanjuan"
               novalidate
               class="php-email-form"
             >
+              <input
+                type="hidden"
+                name="_csrf"
+                value="<%= csrfToken%>"
+              />
               <div>
                 <% if(Object.keys(errors).length == 0) { %>
                 <h2>Datos:</h2>
@@ -165,11 +167,6 @@
                   Your message has been sent. Thank you!
                 </div>
               </div>
-              <!-- <div
-                class="g-recaptcha"
-                data-sitekey="6Le7WQEVAAAAANNcTzfWK7OhHtnL8PwaMKWdH7zU"
-              ></div> -->
-
               <div class="text-center">
                 <button type="submit">Enviar San Juan</button>
               </div>

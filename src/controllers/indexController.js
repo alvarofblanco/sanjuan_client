@@ -4,7 +4,6 @@ const axios = require('axios');
 const getIndex = async (req, res) => {
   res.render('pages/index');
 };
-
 const indexController = {};
 indexController.getIndex = getIndex;
 
