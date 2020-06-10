@@ -51,6 +51,6 @@ app.use((req, res) => {
   res.status(404).send('Unable to find the requested route');
 });
 
-app.listen(PORT, '192.168.100.15', () => {
+app.listen(PORT, () => {
   debug(`Listening on port: ${PORT}`);
 });
