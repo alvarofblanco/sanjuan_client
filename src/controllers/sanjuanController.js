@@ -6,12 +6,23 @@ const debug = require('debug')('sanjuanController');
 const axios = require('axios');
 
 const getSanjuanList = async (req, res) => {
-  // res.json({ message: 'Route not implemented yet' });
-  res.render('pages/maps', {
-    GOOGLE_MAPS_API_KEY:
-      process.env.GOOGLE_MAPS_API_KEY ||
-      'AIzaSyDdTh37pLricihtuZKxqUCW0_yErzVle0s',
-  });
+  const host = getConnectionString();
+  try {
+    const response = await axios.get('/sanjuans?active=true', {
+      proxy: {
+        host: host,
+        port: 1337,
+      },
+    });
+
+    console.log(response.data);
+
+    res.render('pages/maps', {
+      GOOGLE_MAPS_API_KEY:
+        process.env.GOOGLE_MAPS_API_KEY ||
+        'AIzaSyDdTh37pLricihtuZKxqUCW0_yErzVle0s',
+    });
+  } catch (error) {}
 };
 
 const newSanjuanForm = async (req, res) => {
@@ -26,18 +37,7 @@ const newSanjuanForm = async (req, res) => {
 const newSanjuanService = async (req, res) => {
   debug('ENTERING NEW SANJUAN SERVICE');
   // Get connection string
-  require('dotenv').config();
-  let host = '';
-  switch (process.env.NODE_ENV) {
-    case 'development':
-      host = 'localhost';
-      break;
-    case 'testing':
-      host = 'sanjuanapp_api';
-      break;
-    default:
-      host = 'localhost';
-  }
+  let host = getConnectionString();
   // Checks for errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -62,6 +62,22 @@ const newSanjuanService = async (req, res) => {
     console.log(error.toString());
     res.redirect(301, '/');
   }
+};
+
+const getConnectionString = () => {
+  require('dotenv').config();
+  let host = '';
+  switch (process.env.NODE_ENV) {
+    case 'development':
+      host = 'localhost';
+      break;
+    case 'testing':
+      host = 'sanjuanapp_api';
+      break;
+    default:
+      host = 'localhost';
+  }
+  return host;
 };
 
 const sanjuanController = {};

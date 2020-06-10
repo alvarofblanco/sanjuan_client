@@ -64,114 +64,109 @@
             </p>
           </div>
 
-          <div
-            class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"
+          <form
+            method="POST"
+            action="/sanjuan"
+            novalidate
+            class="php-email-form"
           >
-            <!-- FORM HEADER -->
-            <form
-              method="POST"
-              action="/sanjuan"
-              novalidate
-              class="php-email-form"
-            >
+            <input
+              type="hidden"
+              name="_csrf"
+              value="<%= csrfToken%>"
+            />
+            <div>
+              <% if(Object.keys(errors).length == 0) { %>
+              <h2>Datos:</h2>
+              <% } else { %>
+              <h2 class="form-error">
+                Oops, por favor corrija lo siguiente
+              </h2>
+              <ul>
+                <% Object.values(errors).forEach(error => { %>
+                <li><%= error.msg %></li>
+                <% }) %>
+              </ul>
+              <% } %>
+            </div>
+            <div class="form-row">
+              <div
+                class="form-group col-md-6 <% errors.message ? 'form-field-invalid' : '' %>"
+              >
+                <label for="name">Nombre del San Juan</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="name"
+                  value="<%= data.name%>"
+                  placeholder="San Juan de Barrio Obrero"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="name">Contacto</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="contact"
+                  id="contact"
+                  value="<%= data.contact%>"
+                  placeholder="0981123123"
+                />
+                <div class="validate"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name">Dirección</label>
               <input
-                type="hidden"
-                name="_csrf"
-                value="<%= csrfToken%>"
+                type="text"
+                class="form-control"
+                name="address"
+                id="address"
+                value="<%= data.address%>"
+                placeholder="Avda. Siempre Verde 123"
               />
-              <div>
-                <% if(Object.keys(errors).length == 0) { %>
-                <h2>Datos:</h2>
-                <% } else { %>
-                <h2 class="form-error">
-                  Oops, por favor corrija lo siguiente
-                </h2>
-                <ul>
-                  <% Object.values(errors).forEach(error => { %>
-                  <li><%= error.msg %></li>
-                  <% }) %>
-                </ul>
-                <% } %>
+              <div class="validate"></div>
+            </div>
+            <div class="form-group">
+              <label for="name">Descripción</label>
+              <textarea
+                class="form-control"
+                name="description"
+                id="description"
+                rows="10"
+                data-rule="required"
+                data-msg="Please write something for us"
+                value="<%= data.description%>"
+                placeholder="Menu Completo: Gs. 50.000 contiene 3 mbeju, 2 chipas y un cocido. Delivery incluido."
+              ></textarea>
+              <div class="validate"></div>
+            </div>
+            <div class="form-group">
+              <label for="name">Horario de Atención</label>
+              <input
+                type="text"
+                class="form-control"
+                name="operating_hours_string"
+                id="operating_hours_string"
+                data-rule="minlen:4"
+                data-msg="Please enter at least 8 chars of subject"
+                value="<%= data.address%>"
+                placeholder="Lun a Vie de 09 a 18 y Sab de 12 a 18"
+              />
+              <div class="validate"></div>
+            </div>
+            <div class="mb-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">
+                Your message has been sent. Thank you!
               </div>
-              <div class="form-row">
-                <div
-                  class="form-group col-md-6 <% errors.message ? 'form-field-invalid' : '' %>"
-                >
-                  <label for="name">Nombre del San Juan</label>
-                  <input
-                    type="text"
-                    name="name"
-                    class="form-control"
-                    id="name"
-                    value="<%= data.name%>"
-                    placeholder="San Juan de Barrio Obrero"
-                  />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Contacto</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="contact"
-                    id="contact"
-                    value="<%= data.contact%>"
-                    placeholder="0981123123"
-                  />
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="name">Dirección</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="address"
-                  id="address"
-                  value="<%= data.address%>"
-                  placeholder="Avda. Siempre Verde 123"
-                />
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <label for="name">Descripción</label>
-                <textarea
-                  class="form-control"
-                  name="description"
-                  id="description"
-                  rows="10"
-                  data-rule="required"
-                  data-msg="Please write something for us"
-                  value="<%= data.description%>"
-                  placeholder="Menu Completo: Gs. 50.000 contiene 3 mbeju, 2 chipas y un cocido. Delivery incluido."
-                ></textarea>
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <label for="name">Horario de Atención</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="operating_hours_string"
-                  id="operating_hours_string"
-                  data-rule="minlen:4"
-                  data-msg="Please enter at least 8 chars of subject"
-                  value="<%= data.address%>"
-                  placeholder="Lun a Vie de 09 a 18 y Sab de 12 a 18"
-                />
-                <div class="validate"></div>
-              </div>
-              <div class="mb-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">
-                  Your message has been sent. Thank you!
-                </div>
-              </div>
-              <div class="text-center">
-                <button type="submit">Enviar San Juan</button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div class="text-center">
+              <button type="submit">Enviar San Juan</button>
+            </div>
+          </form>
         </div>
       </section>
       <!-- End Contact Us Section -->
